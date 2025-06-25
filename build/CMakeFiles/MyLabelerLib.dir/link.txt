@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libMyLabelerLib.a CMakeFiles/MyLabelerLib.dir/src/camera.cpp.obj CMakeFiles/MyLabelerLib.dir/src/renderer.cpp.obj CMakeFiles/MyLabelerLib.dir/src/ui_controls.cpp.obj CMakeFiles/MyLabelerLib.dir/src/greedy_labeler.cpp.obj CMakeFiles/MyLabelerLib.dir/src/visualizer.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libMyLabelerLib.a

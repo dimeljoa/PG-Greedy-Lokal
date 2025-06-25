@@ -1,0 +1,86 @@
+[
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/imgui_s.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\imgui_s.dir\\_deps\\imgui-src\\imgui.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\build\\_deps\\imgui-src\\imgui.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build/_deps/imgui-src/imgui.cpp",
+  "output": "CMakeFiles/imgui_s.dir/_deps/imgui-src/imgui.cpp.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/imgui_s.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\imgui_s.dir\\_deps\\imgui-src\\imgui_draw.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\build\\_deps\\imgui-src\\imgui_draw.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build/_deps/imgui-src/imgui_draw.cpp",
+  "output": "CMakeFiles/imgui_s.dir/_deps/imgui-src/imgui_draw.cpp.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/imgui_s.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\imgui_s.dir\\_deps\\imgui-src\\imgui_widgets.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\build\\_deps\\imgui-src\\imgui_widgets.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build/_deps/imgui-src/imgui_widgets.cpp",
+  "output": "CMakeFiles/imgui_s.dir/_deps/imgui-src/imgui_widgets.cpp.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/imgui_s.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\imgui_s.dir\\_deps\\imgui-src\\imgui_tables.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\build\\_deps\\imgui-src\\imgui_tables.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build/_deps/imgui-src/imgui_tables.cpp",
+  "output": "CMakeFiles/imgui_s.dir/_deps/imgui-src/imgui_tables.cpp.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/imgui_s.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\imgui_s.dir\\_deps\\imgui-src\\imgui_demo.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\build\\_deps\\imgui-src\\imgui_demo.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build/_deps/imgui-src/imgui_demo.cpp",
+  "output": "CMakeFiles/imgui_s.dir/_deps/imgui-src/imgui_demo.cpp.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/imgui_s.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\imgui_s.dir\\_deps\\imgui-src\\backends\\imgui_impl_glfw.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\build\\_deps\\imgui-src\\backends\\imgui_impl_glfw.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build/_deps/imgui-src/backends/imgui_impl_glfw.cpp",
+  "output": "CMakeFiles/imgui_s.dir/_deps/imgui-src/backends/imgui_impl_glfw.cpp.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/imgui_s.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\imgui_s.dir\\_deps\\imgui-src\\backends\\imgui_impl_opengl3.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\build\\_deps\\imgui-src\\backends\\imgui_impl_opengl3.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build/_deps/imgui-src/backends/imgui_impl_opengl3.cpp",
+  "output": "CMakeFiles/imgui_s.dir/_deps/imgui-src/backends/imgui_impl_opengl3.cpp.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe  @CMakeFiles/glad.dir/includes_C.rsp  -o CMakeFiles\\glad.dir\\src\\glad.c.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\src\\glad.c\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/src/glad.c",
+  "output": "CMakeFiles/glad.dir/src/glad.c.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/MyLabelerLib.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\MyLabelerLib.dir\\src\\camera.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\src\\camera.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/src/camera.cpp",
+  "output": "CMakeFiles/MyLabelerLib.dir/src/camera.cpp.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/MyLabelerLib.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\MyLabelerLib.dir\\src\\renderer.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\src\\renderer.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/src/renderer.cpp",
+  "output": "CMakeFiles/MyLabelerLib.dir/src/renderer.cpp.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/MyLabelerLib.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\MyLabelerLib.dir\\src\\ui_controls.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\src\\ui_controls.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/src/ui_controls.cpp",
+  "output": "CMakeFiles/MyLabelerLib.dir/src/ui_controls.cpp.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/MyLabelerLib.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\MyLabelerLib.dir\\src\\greedy_labeler.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\src\\greedy_labeler.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/src/greedy_labeler.cpp",
+  "output": "CMakeFiles/MyLabelerLib.dir/src/greedy_labeler.cpp.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/MyLabelerLib.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\MyLabelerLib.dir\\src\\visualizer.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\src\\visualizer.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/src/visualizer.cpp",
+  "output": "CMakeFiles/MyLabelerLib.dir/src/visualizer.cpp.obj"
+},
+{
+  "directory": "C:/Users/dimel/OneDrive/Desktop/PG Steps/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DGLFW_DLL @CMakeFiles/labeler_example.dir/includes_CXX.rsp -std=gnu++17 -o CMakeFiles\\labeler_example.dir\\example\\main.cpp.obj -c \"C:\\Users\\dimel\\OneDrive\\Desktop\\PG Steps\\example\\main.cpp\"",
+  "file": "C:/Users/dimel/OneDrive/Desktop/PG Steps/example/main.cpp",
+  "output": "CMakeFiles/labeler_example.dir/example/main.cpp.obj"
+}
+]

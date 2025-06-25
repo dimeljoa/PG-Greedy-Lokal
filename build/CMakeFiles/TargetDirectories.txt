@@ -1,0 +1,6 @@
+C:/Users/dimel/OneDrive/Desktop/PG Steps/build/CMakeFiles/imgui_s.dir
+C:/Users/dimel/OneDrive/Desktop/PG Steps/build/CMakeFiles/glad.dir
+C:/Users/dimel/OneDrive/Desktop/PG Steps/build/CMakeFiles/MyLabelerLib.dir
+C:/Users/dimel/OneDrive/Desktop/PG Steps/build/CMakeFiles/labeler_example.dir
+C:/Users/dimel/OneDrive/Desktop/PG Steps/build/CMakeFiles/edit_cache.dir
+C:/Users/dimel/OneDrive/Desktop/PG Steps/build/CMakeFiles/rebuild_cache.dir
