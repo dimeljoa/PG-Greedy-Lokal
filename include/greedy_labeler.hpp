@@ -1,80 +1,107 @@
 #pragma once
-
 #include <array>
 #include <vector>
 
-/// Simple axis-aligned bounding box represented by minimum and maximum extents.
-/// Used for collision detection between label candidates.
+/**
+ * @file greedy_labeler.hpp
+ * @brief Public types and APIs for greedy point label placement with monotone state.
+ *
+ * Overview:
+ *  - Each point can have up to 4 square label candidates (one per corner).
+ *  - A greedy algorithm chooses non-overlapping labels that also avoid covering other points.
+ *  - Monotone mode preserves previously placed labels when zooming in, only adds when zooming out.
+ */
+
+/**
+ * @struct Rect
+ * @brief Axis-aligned bounding box for a placed label (open interior semantics in placement).
+ */
 struct Rect {
-    float xmin; ///< Minimum X coordinate
-    float ymin; ///< Minimum Y coordinate
-    float xmax; ///< Maximum X coordinate
-    float ymax; ///< Maximum Y coordinate
+    float xmin, ymin, xmax, ymax; ///< Minimum and maximum coordinates.
 };
 
-/// Represents one potential label placement (a square) anchored at a point.
-/// Each anchor point generates four candidates (one per corner), with a size,
-/// priority for selection order, and a flag indicating if placed.
+/**
+ * @struct LabelCandidate
+ * @brief Single candidate square label anchored at a point with a specific corner.
+ *
+ * corner encoding:
+ *  - 0: Top-Left (TL)
+ *  - 1: Top-Right (TR)
+ *  - 2: Bottom-Right (BR)
+ *  - 3: Bottom-Left (BL)
+ *
+ * valid is set true if the placement algorithm selects this candidate.
+ */
 struct LabelCandidate {
-    std::array<float,2> anchor; ///< (x,y) coordinate of the attached data point
-    float               size;   ///< Side length of the square label
-    int                 corner; ///< Corner index fixed at anchor: 0=top-left, 1=top-right,
-                                 ///< 2=bottom-right, 3=bottom-left
-    float               priority; ///< Higher values are placed first in greedy algorithm
-    bool                valid;    ///< Set to true when this candidate is selected for placement
+    std::array<float,2> anchor; ///< Anchor point (original point position).
+    float  size;                ///< Side length of the square label.
+    int    corner;              ///< Corner code (0..3) relative to anchor.
+    [[maybe_unused]] float  weight; ///< Optional weighting (currently unused).
+    bool   valid;               ///< True if chosen by the placement pass.
 };
 
-/// GenerateLabelCandidates:
-/// For each input point, creates four LabelCandidate entries—one for each
-/// corner position. This provides alternative label positions to avoid
-/// overlapping other labels.
-/// @param points Vector of (x,y) data points
-/// @returns Vector of 4*N LabelCandidate objects for N input points
+/**
+ * @struct MonotoneState
+ * @brief Persistent state to support monotone label placement across size/zoom changes.
+ *
+ * Fields:
+ *  - lastBase: last label size used (detect zoom direction).
+ *  - active: indices of candidates currently placed.
+ *  - fixedCorner: per point chosen corner (stabilizes layout).
+ *  - usedOnce: marks points that have ever received a label (optional policy).
+ */
+struct MonotoneState {
+    float lastBase = -1.0f;                 ///< Previous base label size (<0 means uninitialized).
+    std::vector<int> active;                ///< Candidate indices active after last placement.
+    std::vector<int> fixedCorner;           ///< Chosen corner (0..3) per point.
+    std::vector<unsigned char> usedOnce;    ///< 1 if point labeled at least once.
+};
+
+/**
+ * @brief Compute the axis-aligned bounding box of a label candidate.
+ * @param c Candidate.
+ * @return Rect covering the square label for this candidate.
+ */
+Rect getAABB(const LabelCandidate& c);
+
+/**
+ * @brief Generate 4 square label candidates (one per corner) for each point.
+ * @param pts Input 2D points.
+ * @param baseSize Desired side length of each label.
+ * @return Flat vector of candidates (size = 4 * pts.size()).
+ */
 std::vector<LabelCandidate>
-generateLabelCandidates(const std::vector<std::array<float,2>>& points);
+generateLabelCandidates(const std::vector<std::array<float,2>>& pts, float baseSize);
 
-/// getAABB:
-/// Computes the axis-aligned bounding box for a given candidate.
-/// Uses the anchor, size, and corner index to determine the rectangle extents.
-/// @param cand LabelCandidate to evaluate
-/// @returns Rect representing [xmin, ymin, xmax, ymax] of the candidate
-Rect getAABB(const LabelCandidate& cand);
-
-/// isCollision:
-/// Inline helper that tests for overlap between two Rects using AABB separation.
-/// Returns true if rectangles overlap, false otherwise.
-inline bool isCollision(const Rect& a, const Rect& b) {
-    return !(a.xmax <= b.xmin || b.xmax <= a.xmin
-          || a.ymax <= b.ymin || b.ymax <= a.ymin);
-}
-
-/// greedyPlaceOneLabelPerPoint:
-/// Performs a simple greedy selection to choose at most one label per anchor.
-/// Iterates through candidates in groups of four (one point), sorting each block
-/// by descending priority, and picks the first valid candidate that does not
-/// collide with already placed labels. Marks cand.valid=true for placed ones.
-/// @param candidates Vector of candidates (modified in-place)
-/// @returns Vector of placed label Rects
+/**
+ * @brief Convenience helper: place exactly one label per point using greedy strategy.
+ *
+ * Uses an internal static MonotoneState (not thread-safe). For external control or
+ * multi-frame interaction, prefer greedyPlaceMonotone with your own state instance.
+ *
+ * @param candidates Candidate list (modified: valid flags set, size may be updated).
+ * @param points Matching point set.
+ * @return Vector of placed Rects in the order they were accepted.
+ */
 std::vector<Rect>
-greedyPlaceOneLabelPerPoint(std::vector<LabelCandidate>& candidates);
+greedyPlaceOneLabelPerPoint(std::vector<LabelCandidate>& candidates,
+                            const std::vector<std::array<float,2>>& points);
 
-/// placeLabelsRecursive:
-/// Advanced recursive algorithm using quadtree partitioning:
-/// 1. Runs a greedy pass within the specified region [minX, minY]–[maxX, maxY].
-/// 2. Collects any candidates not placed in this region.
-/// 3. Subdivides the region into four quadrants and recurses until maxDepth.
-/// This reduces comparisons by spatial locality, improving performance on large sets.
-/// @param candidates All label candidates (valid flags updated)
-/// @param placed     Output vector of placed Rects appended in order
-/// @param minX, minY Lower bounds of current region
-/// @param maxX, maxY Upper bounds of current region
-/// @param maxDepth   Recursion depth limit (default 8)
-void placeLabelsRecursive(
-    std::vector<LabelCandidate>& candidates,
-    std::vector<Rect>&           placed,
-    float                        minX,
-    float                        minY,
-    float                        maxX,
-    float                        maxY,
-    int                          maxDepth = 8
-);
+/**
+ * @brief Monotone greedy label placement preserving stability across zoom changes.
+ *
+ * Behavior:
+ *  - If baseSize increases (zoom in): retain subset of previously valid labels that remain feasible.
+ *  - If baseSize decreases (zoom out): attempt to add more labels without removing existing ones.
+ *
+ * @param candidates  Candidate list (corner & size updated; valid flags written).
+ * @param points      Input points (same order as used for candidate generation).
+ * @param baseSize    Current label size.
+ * @param state       Persistent state pointer (must outlive repeated calls).
+ * @return Vector of placed Rects for this invocation.
+ */
+std::vector<Rect>
+greedyPlaceMonotone(std::vector<LabelCandidate>& candidates,
+                    const std::vector<std::array<float,2>>& points,
+                    float baseSize,
+                    MonotoneState* state); // Use a pointer to the state

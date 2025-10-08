@@ -1,70 +1,65 @@
 #include "camera.hpp"
-#include <glm/gtc/matrix_transform.hpp>  // for glm::ortho
+#include <glm/gtc/matrix_transform.hpp> // glm::ortho
 
-/// Default constructor sets zoom to 1.0 (no zoom) and offset to (0,0)
-Camera2D::Camera2D()
-    : zoom_(1.0f), offset_(0.0f, 0.0f) {}
+/**
+ * @file camera.cpp
+ * @brief Implementation of Camera2D: orthographic 2D zoom + pan with cursor-centered zooming.
+ */
 
-/// Reset zoom and pan to default values
+/**
+ * @brief Default constructor (zoom = 1, offset = (0,0)).
+ */
+Camera2D::Camera2D() : zoom_(1.0f), offset_(0.0f, 0.0f) {}
+
+/**
+ * @brief Reset camera to identity zoom and zero offset.
+ */
 void Camera2D::reset() {
-    zoom_ = 1.0f;
+    zoom_   = 1.0f;
     offset_ = {0.0f, 0.0f};
 }
 
-/// Scroll callback to handle zooming centered on the mouse cursor
-/// - @window: GLFW window to query size and cursor position
-/// - @xoffset: horizontal scroll (ignored)
-/// - @yoffset: vertical scroll (positive zooms in, negative zooms out)
-void Camera2D::onScroll(GLFWwindow* window, double /*xoffset*/, double yoffset) {
-    if (yoffset == 0.0) return;  // No zoom change
+void Camera2D::onScroll(GLFWwindow* window, double, double yoffset) {
+    if (yoffset == 0.0) return;
 
-    // Get framebuffer dimensions
+    // Framebuffer size + cursor position
     int fbw, fbh;
     glfwGetFramebufferSize(window, &fbw, &fbh);
-
-    // Get current cursor position in pixels
     double mx, my;
     glfwGetCursorPos(window, &mx, &my);
 
-    // Convert mouse pos to Normalized Device Coordinates [-1,1]
-    float ndcX = float(mx)  / float(fbw) * 2.0f - 1.0f;
-    float ndcY = 1.0f - float(my) / float(fbh) * 2.0f;
+    // Cursor → NDC [-1,1]
+    float ndcX = float(mx) / fbw * 2.0f - 1.0f;
+    float ndcY = 1.0f - float(my) / fbh * 2.0f;
 
-    // Aspect ratio of viewport
-    float aspect = float(fbw) / float(fbh);
+    float aspect = float(fbw) / fbh;
 
-    // Compute world-space coords under cursor before zoom change
+    // World coords before zoom
     float w_before = aspect / zoom_;
-    float h_before = 1.0f  / zoom_;
-    float worldXb = offset_.x + ndcX * w_before;
-    float worldYb = offset_.y + ndcY * h_before;
+    float h_before = 1.0f / zoom_;
+    float wx_before = offset_.x + ndcX * w_before;
+    float wy_before = offset_.y + ndcY * h_before;
 
-    // Update zoom factor (10% per scroll step)
-    zoom_ *= (yoffset > 0 ? 1.1f : (1.0f / 1.1f));
+    // Apply zoom (10% per scroll step)
+    zoom_ *= (yoffset > 0 ? 1.1f : 1.0f / 1.1f);
 
-    // Compute world-space coords under cursor after zoom change
+    // World coords after zoom
     float w_after = aspect / zoom_;
-    float h_after = 1.0f  / zoom_;
-    float worldXa = offset_.x + ndcX * w_after;
-    float worldYa = offset_.y + ndcY * h_after;
+    float h_after = 1.0f / zoom_;
+    float wx_after = offset_.x + ndcX * w_after;
+    float wy_after = offset_.y + ndcY * h_after;
 
-    // Adjust offset so the same world point remains under the cursor
-    offset_.x += (worldXb - worldXa);
-    offset_.y += (worldYb - worldYa);
+    // Adjust offset so cursor stays pinned to same world point
+    offset_.x += (wx_before - wx_after);
+    offset_.y += (wy_before - wy_after);
 }
 
-/// Compute the orthographic projection matrix based on current zoom and offset
-/// - @fbWidth, @fbHeight: framebuffer dimensions
-/// Returns a matrix mapping world-space (x,y) to clip space
 glm::mat4 Camera2D::getProjectionMatrix(int fbWidth, int fbHeight) const {
-    float aspect = float(fbWidth) / float(fbHeight);
+    float aspect = float(fbWidth) / fbHeight;
     float w = aspect / zoom_;
-    float h = 1.0f  / zoom_;
-    
-    // Create orthographic projection: left, right, bottom, top
-    return glm::ortho(
-        -w + offset_.x, w + offset_.x,
-        -h + offset_.y, h + offset_.y,
-        -1.0f, 1.0f    // near and far planes
-    );
+    float h = 1.0f / zoom_;
+
+    return glm::ortho(-w + offset_.x, w + offset_.x,
+                      -h + offset_.y, h + offset_.y,
+                      -1.0f, 1.0f);
 }

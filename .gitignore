@@ -1,0 +1,39 @@
+# Build artifacts
+/build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.ninja
+*.obj
+*.o
+*.pch
+*.pdb
+*.dll
+*.exe
+*.lib
+*.a
+*.ilk
+*.log
+
+# IDE/editor
+.vscode/
+*.code-workspace
+
+# ImGui runtime state
+imgui.ini
+
+# Python
+__pycache__/
+*.pyc
+
+# Experiment outputs (uncomment to ignore all generated CSV results)
+# results/*.csv
+
+# Temporary
+temp/
+*.tmp
+
+# OneDrive metadata
+desktop.ini
+~$*

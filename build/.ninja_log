@@ -1,0 +1,21 @@
+# ninja log v6
+63	814	7816304396975595	CMakeFiles/imgui.dir/src/imgui_impl_opengl3.cpp.obj	7a9b4d2561a2947d
+101	1019	7816304397363044	CMakeFiles/MyLabelerLib.dir/src/camera.cpp.obj	36cd0b6d14917193
+24	1797	7816304396579891	CMakeFiles/glad.dir/src/glad.c.obj	38a9aec54f96a24b
+84	1827	7816304397192282	CMakeFiles/MyLabelerLib.dir/src/ui_controls.cpp.obj	7a7f2fe1c7069766
+77	2251	7816304397131956	CMakeFiles/MyLabelerLib.dir/src/visualizer.cpp.obj	201450a087525488
+1804	2321	7816304414464835	libglad.a	97507880dd30cafb
+108	2331	7816304397446239	CMakeFiles/MyLabelerLib.dir/example/main.cpp.obj	98b9c1c620c4c8ea
+55	2349	7816304396919572	CMakeFiles/imgui.dir/src/imgui_impl_glfw.cpp.obj	b41fec35aa697465
+93	2548	7816304397302758	CMakeFiles/MyLabelerLib.dir/src/greedy_labeler.cpp.obj	ba84cd575c8858b9
+68	2776	7816304397055756	CMakeFiles/LabelerCore.dir/src/greedy_labeler.cpp.obj	82821007fde7399b
+2776	2918	7816304424127018	libLabelerCore.a	fb254c2be0c46de4
+817	2958	7816304404651683	CMakeFiles/labeler_example.dir/example/main.cpp.obj	7694e1772e398676
+45	4016	7816304396819726	CMakeFiles/imgui.dir/src/imgui_tables.cpp.obj	7a34b76ed188cafd
+34	5497	7816304396579891	CMakeFiles/imgui.dir/src/imgui_demo.cpp.obj	a5f37330dd8dfd4a
+40	6722	7816304396753145	CMakeFiles/imgui.dir/src/imgui_draw.cpp.obj	fdbbb54b38a4bf85
+50	7992	7816304396848561	CMakeFiles/imgui.dir/src/imgui_widgets.cpp.obj	aac39eec131a6f02
+29	10897	7816304396579891	CMakeFiles/imgui.dir/src/imgui.cpp.obj	372a6fe36d159c16
+10898	11010	7816304505277120	libimgui.a	146111641ae20a21
+11010	11109	7816304506458560	libMyLabelerLib.a	83d86cf9fa71f787
+11109	11298	7816304507403739	labeler_example.exe	86dfd7c6240af213
